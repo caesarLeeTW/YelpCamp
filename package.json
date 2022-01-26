@@ -1,26 +1,27 @@
 {
-  "name": "yelpcamp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://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@github.com/caesarLeeTW/YelpCamp.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/caesarLeeTW/YelpCamp/issues"
-  },
-  "homepage": "https://github.com/caesarLeeTW/YelpCamp#readme",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.2",
-    "method-override": "^3.0.0",
-    "mongoose": "^6.1.8",
-  }
+    "name": "yelpcamp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://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@github.com/caesarLeeTW/YelpCamp.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/caesarLeeTW/YelpCamp/issues"
+    },
+    "homepage": "https://github.com/caesarLeeTW/YelpCamp#readme",
+    "dependencies": {
+        "ejs": "^3.1.6",
+        "express": "^4.17.2",
+        "method-override": "^3.0.0",
+        "mongoose": "^6.1.8",
+        "morgan": "^1.10.0"
+    }
 }
