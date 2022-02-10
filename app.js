@@ -9,6 +9,7 @@ const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -21,8 +22,12 @@ const ExpressError = require('./utils/ExpressError');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
-
-mongoose.connect('mongodb://localhost:27017/yelp-camp')
+const dbUrl =
+    // atlas cloud database
+    process.env.DB_URL ||
+    // local database
+    'mongodb://localhost:27017/yelp-camp';
+mongoose.connect(dbUrl)
     .then(() => {
         console.log("MONGO CONNECTION OPEN!");
     })
@@ -42,9 +47,21 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
+const store = new MongoStore({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log('SESSION STORE ERROR', e);
+})
+
 const sessionCondig = {
+    store,
     name: 'session', // try not to use default name generated from express-session
-    secret: 'thisshouldbeabettersecret!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -52,7 +69,7 @@ const sessionCondig = {
         //secure: true, //only accept https request used in production
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000
-    }
+    },
 }
 app.use(session(sessionCondig))
 app.use(flash());
