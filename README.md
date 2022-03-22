@@ -1,6 +1,6 @@
 # YelpCamp
 - The final project of the udemy course [The Web Developer Bootcamp 2022](https://www.udemy.com/course/the-web-developer-bootcamp/)
-- Click here to watch the [demo](https://yelp-camp-demo-2022.herokuapp.com/).
+- Click here to watch the [demo](https://yelp-camp-demo-2022.herokuapp.com/){:target="_blank"}.
 
 ## Features
 - Built with BootStrap 5, plain HTML and JavaScript without any front-end framework.
